@@ -1,0 +1,4 @@
+Bundle-Name: asset-ext-web
+Bundle-SymbolicName: com.liferay.asset.ext.web
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.asset.ext.web.constants

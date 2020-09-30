@@ -1,0 +1,10 @@
+Bundle-Name: asset-ext-api
+Bundle-SymbolicName: com.liferay.asset.ext.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.asset.ext.exception,\
+	com.liferay.asset.ext.model,\
+	com.liferay.asset.ext.service,\
+	com.liferay.asset.ext.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../asset-ext-service/service.xml

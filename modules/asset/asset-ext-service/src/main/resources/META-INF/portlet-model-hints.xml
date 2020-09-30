@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.asset.ext.model.AssetEntryUserStatus">
+		<field name="uuid" type="String" />
+		<field name="assetEntryUserStatusId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="entryId" type="long" />
+		<field name="acknowledged" type="boolean" />
+		<field name="acknowledgementDate" type="Date" />
+		<field name="downloaded" type="boolean" />
+		<field name="downloadDate" type="Date" />
+		<field name="read" type="boolean" />
+		<field name="readDate" type="Date" />
+	</model>
+</model-hints>

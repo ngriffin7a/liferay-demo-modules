@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root
+	version="2.1"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:portlet="http://xmlns.jcp.org/portlet_3_0"
+>
+	<jsp:directive.page contentType="text/html" pageEncoding="UTF-8" />
+
+	<portlet:defineObjects />
+
+	<portlet:actionURL var="actionURL">
+		<portlet:param name="javax.portlet.action" value="markAllInSiteAsUnread" />
+	</portlet:actionURL>
+
+	<form action="${actionURL}" method="post">
+		<input type="submit" value="Mark all in site as unread" />
+	</form>
+</jsp:root>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.liferay.asset.ext">
+	<namespace>ASSET_EXT</namespace>
+	<entity local-service="true" name="AssetEntryUserStatus" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="assetEntryUserStatusId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- FK fields -->
+		<column name="entryId" primary="true" type="long" />
+
+		<!-- Other fields -->
+		<column name="acknowledged" type="boolean" />
+		<column name="acknowledgementDate" type="Date" />
+		<column name="downloaded" type="boolean" />
+		<column name="downloadDate" type="Date" />
+		<column name="read" type="boolean" />
+		<column name="readDate" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="userName" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<finder name="UserIdEntryId" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="entryId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+</service-builder>
