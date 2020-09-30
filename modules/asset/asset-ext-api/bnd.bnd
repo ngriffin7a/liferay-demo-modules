@@ -1,6 +1,6 @@
 Bundle-Name: asset-ext-api
 Bundle-SymbolicName: com.liferay.asset.ext.api
-Bundle-Version: 1.0.0
+Bundle-Version: 7.2.10.2.0
 Export-Package:\
 	com.liferay.asset.ext.exception,\
 	com.liferay.asset.ext.model,\
