@@ -15,7 +15,7 @@
 package com.liferay.asset.ext.web.internal.portlet;
 
 import com.liferay.asset.ext.service.AssetEntryUserStatusLocalService;
-import com.liferay.asset.ext.web.constants.AssetExtWebPortletKeys;
+import com.liferay.asset.ext.web.constants.AssetExtAdminWebPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -50,14 +50,14 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.display-name=AssetExtWeb",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jspx",
-		"javax.portlet.name=" + AssetExtWebPortletKeys.ASSET_EXT_WEB,
+		"javax.portlet.name=" + AssetExtAdminWebPortletKeys.ASSET_EXT_ADMIN_WEB,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",
 		"javax.portlet.version=3.0"
 	},
 	service = Portlet.class
 )
-public class AssetExtWebPortlet extends MVCPortlet {
+public class AssetExtAdminWebPortlet extends MVCPortlet {
 
 	@ProcessAction(name = "markAllInSiteAsUnread")
 	public void markAllInSiteAsUnread(
@@ -101,7 +101,7 @@ public class AssetExtWebPortlet extends MVCPortlet {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AssetExtWebPortlet.class);
+		AssetExtAdminWebPortlet.class);
 
 	@Reference
 	private AssetEntryUserStatusLocalService _assetEntryUserStatusLocalService;

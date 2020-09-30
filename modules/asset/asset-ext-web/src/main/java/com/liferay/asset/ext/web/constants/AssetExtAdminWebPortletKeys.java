@@ -17,9 +17,9 @@ package com.liferay.asset.ext.web.constants;
 /**
  * @author Neil Griffin
  */
-public class AssetExtWebPortletKeys {
+public class AssetExtAdminWebPortletKeys {
 
-	public static final String ASSET_EXT_WEB =
-		"asset_ext_web_AssetExtWebPortlet";
+	public static final String ASSET_EXT_ADMIN_WEB =
+		"asset_ext_web_AssetExtAdminWebPortlet";
 
 }
