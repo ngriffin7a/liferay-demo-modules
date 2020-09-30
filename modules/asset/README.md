@@ -17,7 +17,7 @@ that provides the ability to reset/mark all Web Content assets as being
 deployed, this module inserts itself into the Asset Publisher controller/
 service calls so that it will return dynamic search results that are **unread**
 by the user. Note that the following config files must be deployed to
-$LIFERAY_HOME/configs for it to work:
+$LIFERAY_HOME/osgi/configs for it to work:
 
     - [AssetPublisherWebConfiguration.config](../../configs/common/osgi/configs/com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebConfiguration.config)
     - [UnreadAssetsConfig.config](../../configs/common/osgi/configs/com.liferay.asset.publisher.unread.content.filter.internal.UnreadAssetsConfig.config)
