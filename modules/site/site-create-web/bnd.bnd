@@ -1,0 +1,3 @@
+Bundle-Name: site-create-web
+Bundle-SymbolicName: com.liferay.demo.site.create.web
+Bundle-Version: 1.0.0
