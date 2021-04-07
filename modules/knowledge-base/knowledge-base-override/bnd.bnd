@@ -1,0 +1,5 @@
+Bundle-Description: Overrides the Knowledge Base JSP by leveraging OSGi fragment modules.
+Bundle-SymbolicName: com.liferay.demo.kb.override
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.knowledge.base.web;bundle-version="3.0.38"
+-sources: true
