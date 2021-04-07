@@ -82,7 +82,7 @@ public class DemoStorageAdapter extends BaseStorageAdapter<Demo> {
 		validate(demo);
 
 		try {
-			// TOD: Custom storage (email, database, web service, etc.)
+			// TODO: Custom storage (email, database, web service, etc.)
 			_log.info("Saved Demo");
 		}
 		catch (Exception e) {
