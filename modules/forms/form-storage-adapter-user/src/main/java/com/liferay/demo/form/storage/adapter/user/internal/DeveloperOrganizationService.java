@@ -25,11 +25,13 @@ import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Neil Griffin
  */
+@Component(service = DeveloperOrganizationService.class)
 public class DeveloperOrganizationService
 	extends BaseLiferayOrganizationService
 	implements LiferayOrganizationService<Developer> {
