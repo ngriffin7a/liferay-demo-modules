@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.ListTypeServiceUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 
@@ -65,11 +66,16 @@ public abstract class BaseLiferayOrganizationService {
 			boolean mailing = true;
 			boolean primary = true;
 
-			addressLocalService.addAddress(
-				creatorUserId, Organization.class.getName(),
-				organization.getOrganizationId(), addressLine1, addressLine2,
-				addressLine3, city, postalCode, regionId, countryId,
-				_getBillingTypeId(), mailing, primary, serviceContext);
+			if (Validator.isNotNull(addressLine1) &&
+				Validator.isNotNull(city) && Validator.isNotNull(postalCode)) {
+
+				addressLocalService.addAddress(
+					creatorUserId, Organization.class.getName(),
+					organization.getOrganizationId(), addressLine1,
+					addressLine2, addressLine3, city, postalCode, regionId,
+					countryId, _getBillingTypeId(), mailing, primary,
+					serviceContext);
+			}
 		}
 
 		return organization;
