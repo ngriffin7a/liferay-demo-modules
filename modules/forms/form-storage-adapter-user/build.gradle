@@ -1,0 +1,10 @@
+dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "org.osgi", name: "org.osgi.core", version: "6.0.0"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "org.slf4j", name: "slf4j-api"
+	compileOnly project(":modules:forms:form-storage-adapter-api")
+	compileOnly project(":modules:permission:permission-api")
+	compileOnly project(":modules:user:liferay-user-registration-api")
+}
