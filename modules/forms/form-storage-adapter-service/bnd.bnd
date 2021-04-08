@@ -1,0 +1,3 @@
+Bundle-Name: form-storage-adapter-service
+Bundle-SymbolicName: com.liferay.demo.form.storage.adapter.service
+Bundle-Version: 1.0.0
