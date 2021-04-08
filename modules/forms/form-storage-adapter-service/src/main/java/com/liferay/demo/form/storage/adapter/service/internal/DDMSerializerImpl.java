@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.demo.form.storage.adapter.internal;
+package com.liferay.demo.form.storage.adapter.service.internal;
 
+import com.liferay.demo.form.storage.adapter.DDMSerializer;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializer;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeRequest;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeResponse;
@@ -29,9 +30,10 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Neil Griffin
  */
-@Component(service = DDMSerializer.class)
-public class DDMSerializer {
+@Component(service = DDMSerializerImpl.class)
+public class DDMSerializerImpl implements DDMSerializer {
 
+	@Override
 	public JSONObject getJSONObject(DDMFormValues ddmFormValues)
 		throws JSONException {
 

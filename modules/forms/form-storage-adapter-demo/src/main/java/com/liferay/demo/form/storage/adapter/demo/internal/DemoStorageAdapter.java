@@ -12,8 +12,10 @@
  * details.
  */
 
-package com.liferay.demo.form.storage.adapter.internal;
+package com.liferay.demo.form.storage.adapter.demo.internal;
 
+import com.liferay.demo.form.storage.adapter.BaseStorageAdapter;
+import com.liferay.demo.form.storage.adapter.DDMSerializer;
 import com.liferay.dynamic.data.mapping.exception.StorageException;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.DDMStorageAdapter;

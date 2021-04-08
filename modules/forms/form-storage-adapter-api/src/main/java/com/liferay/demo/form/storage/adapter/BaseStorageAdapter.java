@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.demo.form.storage.adapter.internal;
+package com.liferay.demo.form.storage.adapter;
 
 import com.liferay.dynamic.data.mapping.exception.StorageException;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
@@ -55,12 +55,9 @@ public abstract class BaseStorageAdapter<T> implements DDMStorageAdapter {
 	}
 
 	@Override
-	public DDMStorageAdapterSaveResponse save(
+	public abstract DDMStorageAdapterSaveResponse save(
 			DDMStorageAdapterSaveRequest ddmStorageAdapterSaveRequest)
-		throws StorageException {
-
-		return null;
-	}
+		throws StorageException;
 
 	protected abstract DDMStorageAdapterTracker getDDMStorageAdapterTracker();
 
@@ -73,6 +70,20 @@ public abstract class BaseStorageAdapter<T> implements DDMStorageAdapter {
 
 	protected abstract T parse(DDMFormValues ddmFormValues)
 		throws JSONException;
+
+	protected String stripJSONSyntax(String value) {
+		if (value != null) {
+			if (value.startsWith("[\"")) {
+				value = value.substring(2);
+			}
+
+			if (value.endsWith("\"]")) {
+				value = value.substring(0, value.length() - 2);
+			}
+		}
+
+		return value;
+	}
 
 	protected abstract void validate(T t)
 		throws DDMFormValuesValidationException;
