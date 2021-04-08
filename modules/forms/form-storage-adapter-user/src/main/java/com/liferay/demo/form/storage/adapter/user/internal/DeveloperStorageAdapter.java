@@ -141,9 +141,9 @@ public class DeveloperStorageAdapter extends BaseStorageAdapter<Developer> {
 		developer.setCity(jsonObject.getString("City"));
 		developer.setCountryId(
 			_getCountryId(stripJSONSyntax(jsonObject.getString("Country"))));
-		developer.setCompanyName(jsonObject.getString("CompanyName"));
-		developer.setEmailAddress(jsonObject.getString("EmailAddress"));
-		developer.setFirstName(jsonObject.getString("FirstName"));
+		developer.setCompanyName(jsonObject.getString("Field42128187"));
+		developer.setEmailAddress(jsonObject.getString("Field99658231"));
+		developer.setFirstName(jsonObject.getString("Field21708717"));
 		developer.setJobTitle(jsonObject.getString("JobTitle"));
 		developer.setPostalCode(jsonObject.getString("PostalCode"));
 
@@ -151,7 +151,7 @@ public class DeveloperStorageAdapter extends BaseStorageAdapter<Developer> {
 
 		developer.setRegionId(
 			_getRegionId(stripJSONSyntax(jsonObject.getString("Region"))));
-		developer.setLastName(jsonObject.getString("LastName"));
+		developer.setLastName(jsonObject.getString("Field24455729"));
 		developer.setMobilePhone(jsonObject.getString("MobilePhone"));
 		developer.setWebsiteURL(jsonObject.getString("WebsiteURL"));
 
