@@ -1,0 +1,3 @@
+Bundle-Name: permission-service
+Bundle-SymbolicName: com.liferay.demo.permission.service
+Bundle-Version: 1.0.0
