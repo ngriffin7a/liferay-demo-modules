@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Neil Griffin
  */
-@Component(service = DDMSerializerImpl.class)
+@Component(service = DDMSerializer.class)
 public class DDMSerializerImpl implements DDMSerializer {
 
 	@Override
