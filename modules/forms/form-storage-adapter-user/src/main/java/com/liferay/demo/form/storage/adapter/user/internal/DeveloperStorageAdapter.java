@@ -51,7 +51,7 @@ import org.slf4j.LoggerFactory;
  * @author Neil Griffin
  */
 @Component(
-	immediate = true, property = "ddm.storage.adapter.type=Demo",
+	immediate = true, property = "ddm.storage.adapter.type=Developer",
 	service = DDMStorageAdapter.class
 )
 public class DeveloperStorageAdapter extends BaseStorageAdapter<Developer> {
