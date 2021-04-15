@@ -1,0 +1,5 @@
+Bundle-Description: Overrides Document Library JSPs by leveraging OSGi fragment modules.
+Bundle-SymbolicName: com.liferay.demo.document.library.web.override
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.document.library.web;bundle-version="5.0.53"
+-sources: true
