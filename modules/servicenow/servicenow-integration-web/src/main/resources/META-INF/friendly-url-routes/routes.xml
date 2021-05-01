@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 7.4.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_7_4_0.dtd">
+
+<routes>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{category}/{mvcRenderCommandName}/{incidentId}/redirectedView/{redirectedView}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{category}/{mvcRenderCommandName}/redirectedView/{redirectedView}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{category}/{mvcRenderCommandName}/{incidentId}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{category}/{mvcRenderCommandName}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{category}</pattern>
+		<overridden-parameter name="mvcRenderCommandName" />
+	</route>
+</routes>

@@ -1,0 +1,9 @@
+Bundle-Name: servicenow-web
+Bundle-SymbolicName: com.liferay.demo.servicenow.web
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.demo.servicenow.web
+Require-Capability:\
+	osgi.extender;\
+		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/clay))",\
+	osgi.extender;\
+		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/frontend))"

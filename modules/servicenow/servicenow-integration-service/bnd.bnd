@@ -1,0 +1,3 @@
+Bundle-Name: servicenow-service
+Bundle-SymbolicName: com.liferay.demo.servicenow.service
+Bundle-Version: 1.0.0
