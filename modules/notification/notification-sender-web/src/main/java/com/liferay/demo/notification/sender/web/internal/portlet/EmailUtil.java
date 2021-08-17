@@ -22,7 +22,6 @@ import com.liferay.mail.kernel.template.MailTemplateFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -41,7 +40,8 @@ import org.osgi.service.component.annotations.Reference;
 public class EmailUtil {
 
 	public void sendNotificationEmail(
-			String fromAddress, String fromName, String toAddress, User toUser,
+		long companyId,
+			String fromAddress, String fromName, String toAddress, Recipient recipient,
 			String subject, String body)
 		throws PortalException {
 
@@ -50,15 +50,14 @@ public class EmailUtil {
 		try {
 			mailMessage = new MailMessage(
 				new InternetAddress(fromAddress, fromName),
-				new InternetAddress(toAddress, toUser.getFullName()), subject,
+				new InternetAddress(toAddress, recipient.getFullName()), subject,
 				body, true);
 		}
 		catch (UnsupportedEncodingException e) {
 			throw new PortalException(e);
 		}
 
-		Company company = _companyLocalService.getCompany(
-			toUser.getCompanyId());
+		Company company = _companyLocalService.getCompany(companyId);
 
 		mailMessage.setMessageId(
 			PortalUtil.getMailId(
@@ -68,7 +67,7 @@ public class EmailUtil {
 	}
 
 	public void sendNotificationEmail(
-			String fromAddress, String fromName, String toAddress, User toUser,
+			long companyId, String fromAddress, String fromName, String toAddress, Recipient recipient,
 			String subject, String body,
 			MailTemplateContext mailTemplateContext)
 		throws PortalException {
@@ -81,11 +80,11 @@ public class EmailUtil {
 				MailTemplateFactoryUtil.createMailTemplate(body, true);
 
 			sendNotificationEmail(
-				fromAddress, fromName, toAddress, toUser,
+				companyId, fromAddress, fromName, toAddress, recipient,
 				subjectTemplate.renderAsString(
-					toUser.getLocale(), mailTemplateContext),
+					recipient.getLocale(), mailTemplateContext),
 				bodyTemplate.renderAsString(
-					toUser.getLocale(), mailTemplateContext));
+					recipient.getLocale(), mailTemplateContext));
 		}
 		catch (IOException ioException) {
 			throw new SystemException(ioException);

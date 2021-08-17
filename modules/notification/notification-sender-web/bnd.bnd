@@ -8,5 +8,7 @@ Import-Package:\
 	*
 Require-Capability:\
 	osgi.extender;\
+		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/clay))",\
+	osgi.extender;\
 		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/frontend))"
 -fixupmessages "Classes found in the wrong directory"; restrict:=error; is:=warning

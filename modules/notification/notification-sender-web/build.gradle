@@ -1,6 +1,8 @@
 dependencies {
 	compileInclude group: "com.twilio.sdk", name: "twilio", version: "8.11.0"
 
+	compileOnly group: "com.liferay", name: "com.liferay.application.list.api"
+	compileOnly group: "com.liferay", name: "com.liferay.asset.list.api"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api"

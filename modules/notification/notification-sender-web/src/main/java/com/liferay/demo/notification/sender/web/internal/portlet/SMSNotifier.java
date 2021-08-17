@@ -14,20 +14,16 @@
 
 package com.liferay.demo.notification.sender.web.internal.portlet;
 
-import com.liferay.demo.notification.sender.web.SegmentNotifierWebPortletKeys;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.kernel.model.Phone;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.util.TransformUtil;
-import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.provider.SegmentsEntryProviderRegistry;
-import com.liferay.segments.service.SegmentsEntryLocalService;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -42,10 +38,6 @@ import java.util.Objects;
 import javax.portlet.ActionParameters;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.Portlet;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -53,46 +45,11 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Neil Griffin
  */
-@Component(
-	immediate = true,
-	property = {
-		"com.liferay.portlet.display-category=category.sample",
-		"com.liferay.portlet.header-portlet-css=/css/main.css",
-		"com.liferay.portlet.instanceable=true",
-		"javax.portlet.display-name=NotificationsAdminWeb",
-		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/views/segmentSmsNotifier.jsp",
-		"javax.portlet.name=" + SegmentNotifierWebPortletKeys.SEGMENT_SMS_NOTIFIER_WEB,
-		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=power-user,user",
-		"javax.portlet.version=3.0"
-	},
-	service = Portlet.class
-)
-public class SegmentSmsNotifierWebPortlet extends MVCPortlet {
+@Component(service = SMSNotifier.class)
+public class SMSNotifier {
 
-	@Override
-	public void render(
-			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws IOException, PortletException {
-
-		List<SegmentsEntry> segmentsEntries =
-			_segmentsEntryLocalService.getSegmentsEntries(
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		renderRequest.setAttribute("segmentsEntries", segmentsEntries);
-
-		super.render(renderRequest, renderResponse);
-	}
-
-	public void sendSms(
-			ActionRequest actionRequest, ActionResponse actionResponse)
+	public void sendSms(long segmentsEntryId, String messageText)
 		throws Exception {
-
-		ActionParameters actionParameters = actionRequest.getActionParameters();
-
-		long segmentsEntryId = GetterUtil.getLong(
-			actionParameters.getValue("segmentsEntryId"));
 
 		List<User> users = _getSegmentsEntryUsers(
 			segmentsEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
@@ -116,12 +73,13 @@ public class SegmentSmsNotifierWebPortlet extends MVCPortlet {
 						String accountSid = "";
 						String authToken = "";
 						String fromPhoneNumber = "";
+
 						Twilio.init(accountSid, authToken);
 
 						MessageCreator creator = Message.creator(
 							new PhoneNumber(phoneNumber),
 							new PhoneNumber(fromPhoneNumber),
-							actionParameters.getValue("message"));
+							messageText);
 
 						Message message = creator.create();
 
@@ -142,9 +100,6 @@ public class SegmentSmsNotifierWebPortlet extends MVCPortlet {
 					segmentsEntryId, start, end)),
 			_userLocalService::fetchUser);
 	}
-
-	@Reference
-	private SegmentsEntryLocalService _segmentsEntryLocalService;
 
 	@Reference
 	private SegmentsEntryProviderRegistry _segmentsEntryProviderRegistry;

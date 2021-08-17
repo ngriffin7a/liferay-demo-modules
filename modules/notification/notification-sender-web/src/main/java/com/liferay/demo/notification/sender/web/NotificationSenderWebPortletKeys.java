@@ -12,21 +12,13 @@
  * details.
  */
 
-package com.liferay.demo.notification.sender.web.internal.portlet;
-
-import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.util.SubscriptionSender;
+package com.liferay.demo.notification.sender.web;
 
 /**
  * @author Neil Griffin
  */
-public class SegmentSubscriptionSender extends SubscriptionSender {
+public class NotificationSenderWebPortletKeys {
 
-	@Override
-	protected void sendNotification(User user, boolean notifyImmediately)
-		throws Exception {
-
-		super.sendNotification(user, notifyImmediately);
-	}
-
+	public static final String NOTIFICATION_SENDER_WEB =
+		"com_liferay_demo_notification_sender_NotificationSenderWebPortlet";
 }

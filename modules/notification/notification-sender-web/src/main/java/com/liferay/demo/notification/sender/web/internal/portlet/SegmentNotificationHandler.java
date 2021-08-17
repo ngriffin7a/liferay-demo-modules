@@ -14,7 +14,7 @@
 
 package com.liferay.demo.notification.sender.web.internal.portlet;
 
-import com.liferay.demo.notification.sender.web.SegmentNotifierWebPortletKeys;
+import com.liferay.demo.notification.sender.web.NotificationSenderWebPortletKeys;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -26,14 +26,14 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	property = "javax.portlet.name=" + SegmentNotifierWebPortletKeys.SEGMENT_WEBSITE_NOTIFIER_WEB,
+	property = "javax.portlet.name=" + NotificationSenderWebPortletKeys.NOTIFICATION_SENDER_WEB,
 	service = SegmentNotificationHandler.class
 )
 public class SegmentNotificationHandler extends BaseUserNotificationHandler {
 
 	public SegmentNotificationHandler() {
 		setPortletId(
-			SegmentNotifierWebPortletKeys.SEGMENT_WEBSITE_NOTIFIER_WEB);
+			NotificationSenderWebPortletKeys.NOTIFICATION_SENDER_WEB);
 	}
 
 	@Override

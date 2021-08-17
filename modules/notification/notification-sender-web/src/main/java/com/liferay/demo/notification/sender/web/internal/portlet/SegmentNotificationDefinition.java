@@ -14,7 +14,7 @@
 
 package com.liferay.demo.notification.sender.web.internal.portlet;
 
-import com.liferay.demo.notification.sender.web.SegmentNotifierWebPortletKeys;
+import com.liferay.demo.notification.sender.web.NotificationSenderWebPortletKeys;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.notifications.UserNotificationDeliveryType;
@@ -26,7 +26,7 @@ public class SegmentNotificationDefinition extends UserNotificationDefinition {
 
 	public SegmentNotificationDefinition(String description) {
 		super(
-			SegmentNotifierWebPortletKeys.SEGMENT_WEBSITE_NOTIFIER_WEB, 0,
+			NotificationSenderWebPortletKeys.NOTIFICATION_SENDER_WEB, 0,
 			SegmentNotificationType.NOTIFICATION_TYPE_SEGMENT,
 			"receive-a-notification-from-a-segment");
 
