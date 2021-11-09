@@ -1,0 +1,9 @@
+Bundle-Name: jira-integration-web
+Bundle-SymbolicName: com.liferay.jira.integration.web
+Bundle-Version: 1.0.0
+# com.liferay.portal.kernel.* is only necessarily because currently deploying against a recent build of master
+Import-Package:\
+	com.liferay.portal.kernel.util; version="[12.0.0,14.0.0)",\
+	\
+	*
+Export-Package: com.liferay.jira.integration.web.internal.constants

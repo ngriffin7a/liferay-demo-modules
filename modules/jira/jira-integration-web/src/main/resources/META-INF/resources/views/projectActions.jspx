@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:liferay-ui="http://liferay.com/tld/ui"
+	xmlns:portlet="http://xmlns.jcp.org/portlet_3_0" version="2.1">
+
+	<c:set value="${SEARCH_CONTAINER_RESULT_ROW.object}" var="project" />
+
+	<portlet:renderURL var="viewProjectURL">
+		<portlet:param name="jiraProjectId" value="${project.projectId}" />
+		<portlet:param name="javax.portlet.render" value="project" />
+		<portlet:param name="viewId" value="view" />
+		<!-- SearchContainer view state -->
+		<portlet:param name="cur" value="${projectSearchContainerViewState.cur}" />
+		<portlet:param name="delta" value="${projectSearchContainerViewState.delta}" />
+		<portlet:param name="displayStyle" value="${projectSearchContainerViewState.displayStyle}" />
+		<portlet:param name="orderByCol" value="${projectSearchContainerViewState.orderByCol}" />
+		<portlet:param name="orderByType" value="${projectSearchContainerViewState.orderByType}" />
+		<portlet:param name="resetCur" value="${projectSearchContainerViewState.resetCur}" />
+	</portlet:renderURL>
+
+	<liferay-ui:icon-menu markupView="lexicon">
+		<liferay-ui:icon message="view" url="${viewProjectURL}" />
+	</liferay-ui:icon-menu>
+
+</jsp:root>

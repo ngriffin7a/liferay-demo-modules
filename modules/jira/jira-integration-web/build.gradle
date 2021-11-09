@@ -1,0 +1,12 @@
+dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.view.state.api", version: "1.0.0-SNAPSHOT"
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compileOnly project(":modules:jira:jira-integration-api")
+	compileOnly project(":modules:jira:jira-integration-service")
+
+	cssBuilder group: "com.liferay", name: "com.liferay.css.builder"
+}
+
+repositories {
+	mavenLocal()
+}
