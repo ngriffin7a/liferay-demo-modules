@@ -21,6 +21,8 @@ import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
@@ -41,9 +43,6 @@ import java.util.Map;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Neil Griffin
@@ -107,7 +106,7 @@ public class ServiceNowTokenServiceImpl implements ServiceNowTokenService {
 				ParamBuilder.Type.FORM_URLENCODED
 			);
 
-			_log.trace("requestBody={}", requestBody);
+			_log.trace("requestBody=" + requestBody);
 
 			HttpRequest.BodyPublisher bodyPublisher =
 				HttpRequest.BodyPublishers.ofString(requestBody);
@@ -126,9 +125,9 @@ public class ServiceNowTokenServiceImpl implements ServiceNowTokenService {
 					bodyPublisher
 				).build();
 
-				_log.trace("httpRequest headers={}", httpRequest.headers());
+				_log.trace("httpRequest headers=" + httpRequest.headers());
 
-				_log.trace("httpRequest={}", httpRequest);
+				_log.trace("httpRequest=" + httpRequest);
 			}
 			catch (URISyntaxException urise) {
 				throw new IOException(urise);
@@ -153,7 +152,7 @@ public class ServiceNowTokenServiceImpl implements ServiceNowTokenService {
 
 			String responseBody = httpResponse.body();
 
-			_log.trace("responseBody={}", responseBody);
+			_log.trace("responseBody=" + responseBody);
 
 			String accessToken = null;
 
@@ -185,12 +184,12 @@ public class ServiceNowTokenServiceImpl implements ServiceNowTokenService {
 				jsonObject.getString("signature"));
 		}
 
-		_log.debug("serviceNowToken={}", serviceNowToken);
+		_log.debug("serviceNowToken=" + serviceNowToken);
 
 		return serviceNowToken;
 	}
 
-	private static final Logger _log = LoggerFactory.getLogger(
+	private static final Log _log = LogFactoryUtil.getLog(
 		ServiceNowTokenServiceImpl.class);
 
 	@Reference

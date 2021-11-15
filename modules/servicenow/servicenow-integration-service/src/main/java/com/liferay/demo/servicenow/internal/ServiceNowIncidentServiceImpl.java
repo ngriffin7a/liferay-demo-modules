@@ -41,12 +41,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Neil Griffin
@@ -127,8 +126,8 @@ public class ServiceNowIncidentServiceImpl
 			).GET(
 			).build();
 
-			_log.trace("headers={}", httpRequest.headers());
-			_log.trace("httpRequest={}", httpRequest);
+			_log.trace("headers=" + httpRequest.headers());
+			_log.trace("httpRequest=" + httpRequest);
 		}
 		catch (URISyntaxException urise) {
 			throw new IOException(urise);
@@ -186,7 +185,7 @@ public class ServiceNowIncidentServiceImpl
 		return new IncidentImpl();
 	}
 
-	private static final Logger _log = LoggerFactory.getLogger(
+	private static final Log _log = LogFactoryUtil.getLog(
 		ServiceNowIncidentServiceImpl.class);
 
 	@Reference

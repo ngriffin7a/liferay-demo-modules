@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portlet.view.state.ClayToolbarViewState;
-import com.liferay.portlet.view.state.ClayToolbarViewStateWrapper;
+import com.liferay.view.state.ManagementToolbarViewState;
+import com.liferay.view.state.ManagementToolbarViewStateWrapper;
 
 import java.util.List;
 import java.util.Objects;
@@ -36,23 +36,23 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Neil Griffin
  */
-public class IncidentClayToolbarViewState extends ClayToolbarViewStateWrapper {
+public class IncidentManagementToolbarViewState extends ManagementToolbarViewStateWrapper {
 
-	public IncidentClayToolbarViewState(
-		ClayToolbarViewState clayToolbarViewState,
+	public IncidentManagementToolbarViewState(
+		ManagementToolbarViewState ManagementToolbarViewState,
 		HttpServletRequest httpServletRequest,
 		LiferayPortletResponse liferayPortletResponse, String category,
 		String filterNavigationMessage, String orderByMessage,
 		String numberMessage, String shortDescriptionMessage) {
 
-		super(clayToolbarViewState);
+		super(ManagementToolbarViewState);
 
 		_httpServletRequest = httpServletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 		_category = category;
 		_filterNavigationMessage = filterNavigationMessage;
 
-		_addEntryURL = clayToolbarViewState.getAddEntryURL();
+		_addEntryURL = ManagementToolbarViewState.getAddEntryURL();
 
 		MutableRenderParameters renderParameters =
 			_addEntryURL.getRenderParameters();
@@ -74,10 +74,10 @@ public class IncidentClayToolbarViewState extends ClayToolbarViewStateWrapper {
 				dropdownItem -> {
 					dropdownItem.setHref(_addEntryURL);
 
-					ClayToolbarViewState clayToolbarViewState = getWrapped();
+					ManagementToolbarViewState ManagementToolbarViewState = getWrapped();
 
 					dropdownItem.setLabel(
-						clayToolbarViewState.getAddEntryMessage());
+						ManagementToolbarViewState.getAddEntryMessage());
 				});
 		}
 
@@ -108,10 +108,8 @@ public class IncidentClayToolbarViewState extends ClayToolbarViewStateWrapper {
 	}
 
 	@Override
-	public String getSearchActionURL() {
-		RenderURL searchURL = getSearchURL();
-
-		return searchURL.toString();
+	public RenderURL getSearchActionURL() {
+		return getSearchURL();
 	}
 
 	@Override
@@ -127,10 +125,8 @@ public class IncidentClayToolbarViewState extends ClayToolbarViewStateWrapper {
 	}
 
 	@Override
-	public String getSortingURL() {
-		RenderURL sortingURLReverse = getSortingURLReverse();
-
-		return sortingURLReverse.toString();
+	public RenderURL getSortingURL() {
+		return getSortingURLReverse();
 	}
 
 	@Override

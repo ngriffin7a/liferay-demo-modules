@@ -16,7 +16,7 @@
 	<c:set value="${incidentSearchContainerViewState}" var="searchContainerViewState" />
 
 	<clay:management-toolbar
-		displayContext="${incidentClayToolbarViewState}"
+		displayContext="${incidentManagementToolbarViewState}"
 		itemsTotal="${incidentCount}"
 		searchContainerId="incidents"
 	/>

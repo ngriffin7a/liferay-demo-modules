@@ -21,17 +21,17 @@ import com.liferay.demo.servicenow.ServiceNowTokenService;
 import com.liferay.demo.servicenow.web.PortletKeys;
 import com.liferay.demo.servicenow.web.internal.el.CurrentUser;
 import com.liferay.demo.servicenow.web.internal.portlet.ServiceNowTokenUtil;
-import com.liferay.demo.servicenow.web.internal.view.IncidentClayToolbarViewState;
+import com.liferay.demo.servicenow.web.internal.view.IncidentManagementToolbarViewState;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portlet.view.state.ClayToolbarViewState;
-import com.liferay.portlet.view.state.ClayToolbarViewStateFactory;
-import com.liferay.portlet.view.state.SearchContainerViewState;
-import com.liferay.portlet.view.state.SearchContainerViewStateFactory;
+import com.liferay.view.state.ManagementToolbarViewState;
+import com.liferay.view.state.ManagementToolbarViewStateFactory;
+import com.liferay.view.state.SearchContainerViewState;
+import com.liferay.view.state.SearchContainerViewStateFactory;
 
 import java.io.IOException;
 
@@ -86,7 +86,7 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 
 		SearchContainerViewState incidentSearchContainerViewState =
 			_searchContainerViewStateFactory.create(
-				"list", "number", "asc", renderRequest,
+				"list", null, "number", "asc", renderRequest,
 				new String[] {"number", "short_description"});
 
 		renderRequest.setAttribute(
@@ -100,11 +100,16 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 			renderRequest.getLocale());
 
 		// TODO: These are currently hard-coded but need to be addressed
-		// as part of ClayToolBarViewState.getViewTypeItems()
+		// as part of ManagementToolBarViewState.getViewTypeItems()
 
+		String navigation = null;
+		boolean showAdvancedSearch = false;
 		boolean showDisplayStyleCard = false;
 		boolean showDisplayStyleList = true;
 		boolean showDisplayStyleTable = true;
+		boolean showInfoButton = false;
+		boolean showSearch = false;
+		boolean showSort = false;
 
 		// TODO: Permissions?
 
@@ -113,14 +118,14 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
 
-		ClayToolbarViewState clayToolbarViewState =
-			_clayToolbarViewStateFactory.create(
+		ManagementToolbarViewState ManagementToolbarViewState =
+			_managementToolbarViewStateFactory.create(
 				LanguageUtil.get(resourceBundle, "action.ADD_INCIDENT"),
 				portalPreferences.getValue(
 					PortletKeys.INCIDENTS, "display-style", "list"),
-				"number", "asc", renderRequest, renderResponse,
+				navigation, "number", "asc", renderRequest, renderResponse, showAdvancedSearch,
 				currentUserMayAddIncidentEntry, showDisplayStyleCard,
-				showDisplayStyleList, showDisplayStyleTable);
+				showDisplayStyleList, showDisplayStyleTable, showInfoButton, showSearch, showSort);
 
 		String mapKey =
 			category + incidentSearchContainerViewState.getOrderByType() +
@@ -165,9 +170,9 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 			resourceBundle, "short-description");
 
 		renderRequest.setAttribute(
-			"incidentClayToolbarViewState",
-			new IncidentClayToolbarViewState(
-				clayToolbarViewState,
+			"incidentManagementToolbarViewState",
+			new IncidentManagementToolbarViewState(
+				ManagementToolbarViewState,
 				_portal.getHttpServletRequest(renderRequest),
 				_portal.getLiferayPortletResponse(renderResponse), category,
 				filterNavigationMessage, orderByMessage, numberMessage,
@@ -177,7 +182,7 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 	}
 
 	@Reference
-	private ClayToolbarViewStateFactory _clayToolbarViewStateFactory;
+	private ManagementToolbarViewStateFactory _managementToolbarViewStateFactory;
 
 	@Reference
 	private Portal _portal;

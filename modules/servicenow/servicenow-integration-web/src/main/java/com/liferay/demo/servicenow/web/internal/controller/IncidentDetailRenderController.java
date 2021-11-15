@@ -22,8 +22,8 @@ import com.liferay.demo.servicenow.web.internal.el.CurrentUser;
 import com.liferay.demo.servicenow.web.internal.portlet.ServiceNowTokenUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.view.state.SearchContainerViewState;
-import com.liferay.portlet.view.state.SearchContainerViewStateFactory;
+import com.liferay.view.state.SearchContainerViewState;
+import com.liferay.view.state.SearchContainerViewStateFactory;
 
 import java.io.IOException;
 
@@ -58,9 +58,11 @@ public class IncidentDetailRenderController implements MVCRenderCommand {
 
 		renderRequest.setAttribute("currentUser", new CurrentUser());
 
+		String navigation = null;
+
 		SearchContainerViewState incidentSearchContainerViewState =
 			_searchContainerViewStateFactory.create(
-				"list", "number", "asc", renderRequest,
+				"list", navigation, "number", "asc", renderRequest,
 				new String[] {"number", "short_description"});
 
 		renderRequest.setAttribute(
