@@ -34,9 +34,11 @@
 					<portlet:param name="incidentId" value="${incident.incidentId}" />
 					<portlet:param name="mvcRenderCommandName" value="incident-view" />
 					<!-- SearchContainer view state -->
+					<portlet:param name="categoryId" value="${searchContainerViewState.categoryId}" />
 					<portlet:param name="cur" value="${searchContainerViewState.cur}" />
 					<portlet:param name="delta" value="${searchContainerViewState.delta}" />
 					<portlet:param name="displayStyle" value="${searchContainerViewState.displayStyle}" />
+					<portlet:param name="navigation" value="${searchContainerViewState.navigation}" />
 					<portlet:param name="orderByCol" value="${searchContainerViewState.orderByCol}" />
 					<portlet:param name="orderByType" value="${searchContainerViewState.orderByType}" />
 					<portlet:param name="resetCur" value="${searchContainerViewState.resetCur}" />

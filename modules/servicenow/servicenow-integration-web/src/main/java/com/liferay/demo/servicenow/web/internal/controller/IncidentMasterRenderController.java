@@ -87,7 +87,7 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 
 		SearchContainerViewState incidentSearchContainerViewState =
 			_searchContainerViewStateFactory.create(
-				"list", null, "number", "asc", renderRequest,
+				"list", "all", "number", "asc", renderRequest,
 				new String[] {"number", "short_description"});
 
 		renderRequest.setAttribute(
@@ -103,7 +103,7 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 		// TODO: These are currently hard-coded but need to be addressed
 		// as part of ManagementToolBarViewState.getViewTypeItems()
 
-		String navigation = "";
+		String navigation = "all";
 		boolean showAdvancedSearch = false;
 		boolean showDisplayStyleCard = false;
 		boolean showDisplayStyleList = true;

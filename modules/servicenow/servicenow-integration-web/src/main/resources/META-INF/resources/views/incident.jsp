@@ -37,9 +37,11 @@
 			<portlet:actionURL name="submitIncident" var="formActionURL">
 				<portlet:param name="mvcRenderCommandName" type="render" value="incident-edit" />
 				<!-- SearchContainer view state -->
+				<portlet:param name="categoryId" value="${searchContainerViewState.categoryId}" />
 				<portlet:param name="cur" type="render" value="${searchContainerViewState.cur}" />
 				<portlet:param name="delta" type="render" value="${searchContainerViewState.delta}" />
 				<portlet:param name="displayStyle" type="render" value="${searchContainerViewState.displayStyle}" />
+				<portlet:param name="navigation" type="render" value="${searchContainerViewState.navigation}" />
 				<portlet:param name="orderByCol" type="render" value="${param.orderByCol}" />
 				<portlet:param name="orderByType" type="render" value="${param.orderByType}" />
 				<portlet:param name="resetCur" type="render" value="${searchContainerViewState.resetCur}" />
@@ -112,9 +114,11 @@
 							<portlet:param name="category" value="${param['category']}" />
 							<portlet:param name="mvcRenderCommandName" value="incidents" />
 							<!-- SearchContainer view state -->
+							<portlet:param name="categoryId" value="${searchContainerViewState.categoryId}" />
 							<portlet:param name="cur" value="${searchContainerViewState.cur}" />
 							<portlet:param name="delta" value="${searchContainerViewState.delta}" />
 							<portlet:param name="displayStyle" value="${searchContainerViewState.displayStyle}" />
+							<portlet:param name="navigation" value="${searchContainerViewState.navigation}" />
 							<portlet:param name="orderByCol" value="${param.orderByCol}" />
 							<portlet:param name="orderByType" value="${param.orderByType}" />
 							<portlet:param name="resetCur" value="${searchContainerViewState.resetCur}" />

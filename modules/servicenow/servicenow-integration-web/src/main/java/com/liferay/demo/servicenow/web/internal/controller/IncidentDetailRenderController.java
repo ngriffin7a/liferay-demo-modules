@@ -58,7 +58,7 @@ public class IncidentDetailRenderController implements MVCRenderCommand {
 
 		renderRequest.setAttribute("currentUser", new CurrentUser());
 
-		String navigation = null;
+		String navigation = "all";
 
 		SearchContainerViewState incidentSearchContainerViewState =
 			_searchContainerViewStateFactory.create(
