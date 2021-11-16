@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.view.state.ManagementToolbarViewState;
+import com.liferay.view.state.ManagementToolbarViewStateDisplayContextAdapter;
 import com.liferay.view.state.ManagementToolbarViewStateFactory;
 import com.liferay.view.state.SearchContainerViewState;
 import com.liferay.view.state.SearchContainerViewStateFactory;
@@ -102,7 +103,7 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 		// TODO: These are currently hard-coded but need to be addressed
 		// as part of ManagementToolBarViewState.getViewTypeItems()
 
-		String navigation = null;
+		String navigation = "";
 		boolean showAdvancedSearch = false;
 		boolean showDisplayStyleCard = false;
 		boolean showDisplayStyleList = true;
@@ -118,14 +119,15 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
 
-		ManagementToolbarViewState ManagementToolbarViewState =
+		ManagementToolbarViewState managementToolbarViewState =
 			_managementToolbarViewStateFactory.create(
 				LanguageUtil.get(resourceBundle, "action.ADD_INCIDENT"),
 				portalPreferences.getValue(
 					PortletKeys.INCIDENTS, "display-style", "list"),
-				navigation, "number", "asc", renderRequest, renderResponse, showAdvancedSearch,
-				currentUserMayAddIncidentEntry, showDisplayStyleCard,
-				showDisplayStyleList, showDisplayStyleTable, showInfoButton, showSearch, showSort);
+				navigation, "number", "asc", renderRequest, renderResponse,
+				showAdvancedSearch, currentUserMayAddIncidentEntry,
+				showDisplayStyleCard, showDisplayStyleList,
+				showDisplayStyleTable, showInfoButton, showSearch, showSort);
 
 		String mapKey =
 			category + incidentSearchContainerViewState.getOrderByType() +
@@ -171,18 +173,20 @@ public class IncidentMasterRenderController implements MVCRenderCommand {
 
 		renderRequest.setAttribute(
 			"incidentManagementToolbarViewState",
-			new IncidentManagementToolbarViewState(
-				ManagementToolbarViewState,
-				_portal.getHttpServletRequest(renderRequest),
-				_portal.getLiferayPortletResponse(renderResponse), category,
-				filterNavigationMessage, orderByMessage, numberMessage,
-				shortDescriptionMessage));
+			new ManagementToolbarViewStateDisplayContextAdapter(
+				new IncidentManagementToolbarViewState(
+					managementToolbarViewState,
+					_portal.getHttpServletRequest(renderRequest),
+					_portal.getLiferayPortletResponse(renderResponse), category,
+					filterNavigationMessage, orderByMessage, numberMessage,
+					shortDescriptionMessage)));
 
 		return "/views/incidents.jsp";
 	}
 
 	@Reference
-	private ManagementToolbarViewStateFactory _managementToolbarViewStateFactory;
+	private ManagementToolbarViewStateFactory
+		_managementToolbarViewStateFactory;
 
 	@Reference
 	private Portal _portal;

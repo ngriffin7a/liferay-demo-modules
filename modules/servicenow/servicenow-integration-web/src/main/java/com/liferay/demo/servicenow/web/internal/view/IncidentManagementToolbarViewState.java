@@ -36,23 +36,24 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Neil Griffin
  */
-public class IncidentManagementToolbarViewState extends ManagementToolbarViewStateWrapper {
+public class IncidentManagementToolbarViewState
+	extends ManagementToolbarViewStateWrapper {
 
 	public IncidentManagementToolbarViewState(
-		ManagementToolbarViewState ManagementToolbarViewState,
+		ManagementToolbarViewState managementToolbarViewState,
 		HttpServletRequest httpServletRequest,
 		LiferayPortletResponse liferayPortletResponse, String category,
 		String filterNavigationMessage, String orderByMessage,
 		String numberMessage, String shortDescriptionMessage) {
 
-		super(ManagementToolbarViewState);
+		super(managementToolbarViewState);
 
 		_httpServletRequest = httpServletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 		_category = category;
 		_filterNavigationMessage = filterNavigationMessage;
 
-		_addEntryURL = ManagementToolbarViewState.getAddEntryURL();
+		_addEntryURL = managementToolbarViewState.getAddEntryURL();
 
 		MutableRenderParameters renderParameters =
 			_addEntryURL.getRenderParameters();
@@ -74,10 +75,11 @@ public class IncidentManagementToolbarViewState extends ManagementToolbarViewSta
 				dropdownItem -> {
 					dropdownItem.setHref(_addEntryURL);
 
-					ManagementToolbarViewState ManagementToolbarViewState = getWrapped();
+					ManagementToolbarViewState managementToolbarViewState =
+						getWrapped();
 
 					dropdownItem.setLabel(
-						ManagementToolbarViewState.getAddEntryMessage());
+						managementToolbarViewState.getAddEntryMessage());
 				});
 		}
 
