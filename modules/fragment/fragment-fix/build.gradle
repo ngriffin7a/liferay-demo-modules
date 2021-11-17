@@ -1,0 +1,5 @@
+dependencies {
+	compile project(":modules:permission:permission-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
