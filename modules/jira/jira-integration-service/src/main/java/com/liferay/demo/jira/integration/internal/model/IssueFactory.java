@@ -28,10 +28,6 @@ import java.text.SimpleDateFormat;
  */
 public class IssueFactory {
 
-	public static Issue newIssue() {
-		return new IssueImpl();
-	}
-
 	public static Issue create(String projectId, JSONObject jsonObject)
 		throws JSONException {
 
@@ -60,12 +56,13 @@ public class IssueFactory {
 			}
 
 			Issue issue = new IssueImpl();
+
 			issue.setIssueId(jsonObject.getString("id"));
 			issue.setProjectId(projectId);
 			issue.setKey(jsonObject.getString("key"));
 			issue.setCreatedDate(
-			JiraDateUtil.getDate(
-				dateFormat, fieldsJSONObject.getString("created")));
+				JiraDateUtil.getDate(
+					dateFormat, fieldsJSONObject.getString("created")));
 			issue.setDescription(fieldsJSONObject.getString("description"));
 			issue.setSummary(fieldsJSONObject.getString("summary"));
 			issue.setStatus(status);
@@ -76,6 +73,10 @@ public class IssueFactory {
 		catch (ParseException pe) {
 			throw new JSONException(pe);
 		}
+	}
+
+	public static Issue newIssue() {
+		return new IssueImpl();
 	}
 
 }

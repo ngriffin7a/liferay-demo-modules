@@ -29,18 +29,8 @@ public class IssueImpl implements Issue {
 	}
 
 	@Override
-	public void setCreatedDate(Date createdDate) {
-		_createdDate = createdDate;
-	}
-
-	@Override
 	public String getDescription() {
 		return _description;
-	}
-
-	@Override
-	public void setDescription(String description) {
-		_description = description;
 	}
 
 	@Override
@@ -49,18 +39,8 @@ public class IssueImpl implements Issue {
 	}
 
 	@Override
-	public void setIssueId(String issueId) {
-		_issueId = issueId;
-	}
-
-	@Override
 	public String getKey() {
 		return _key;
-	}
-
-	@Override
-	public void setKey(String key) {
-		_key = key;
 	}
 
 	@Override
@@ -69,18 +49,8 @@ public class IssueImpl implements Issue {
 	}
 
 	@Override
-	public void setProjectId(String projectId) {
-		_projectId = projectId;
-	}
-
-	@Override
 	public String getStatus() {
 		return _status;
-	}
-
-	@Override
-	public void setStatus(String status) {
-		_status = status;
 	}
 
 	@Override
@@ -89,23 +59,53 @@ public class IssueImpl implements Issue {
 	}
 
 	@Override
-	public void setSummary(String summary) {
-		_summary = summary;
-	}
-
-	@Override
 	public String getType() {
 		return _type;
 	}
 
 	@Override
-	public void setType(String type) {
-		_type = type;
+	public Date getUpdatedDate() {
+		return _updatedDate;
 	}
 
 	@Override
-	public Date getUpdatedDate() {
-		return _updatedDate;
+	public void setCreatedDate(Date createdDate) {
+		_createdDate = createdDate;
+	}
+
+	@Override
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	@Override
+	public void setIssueId(String issueId) {
+		_issueId = issueId;
+	}
+
+	@Override
+	public void setKey(String key) {
+		_key = key;
+	}
+
+	@Override
+	public void setProjectId(String projectId) {
+		_projectId = projectId;
+	}
+
+	@Override
+	public void setStatus(String status) {
+		_status = status;
+	}
+
+	@Override
+	public void setSummary(String summary) {
+		_summary = summary;
+	}
+
+	@Override
+	public void setType(String type) {
+		_type = type;
 	}
 
 	@Override

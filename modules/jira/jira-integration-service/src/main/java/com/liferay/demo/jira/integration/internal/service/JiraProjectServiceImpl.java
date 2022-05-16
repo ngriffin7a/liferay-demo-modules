@@ -63,8 +63,7 @@ public class JiraProjectServiceImpl implements JiraProjectService {
 	}
 
 	@Override
-	public Optional<Project> getProject(
-			JiraToken jiraToken, String projectId)
+	public Optional<Project> getProject(JiraToken jiraToken, String projectId)
 		throws IOException {
 
 		HttpRequest httpRequest;
@@ -135,9 +134,7 @@ public class JiraProjectServiceImpl implements JiraProjectService {
 	}
 
 	@Override
-	public List<Project> getProjects(JiraToken jiraToken)
-		throws IOException {
-
+	public List<Project> getProjects(JiraToken jiraToken) throws IOException {
 		List<Project> projects = new ArrayList<>();
 
 		HttpRequest httpRequest;
@@ -189,8 +186,7 @@ public class JiraProjectServiceImpl implements JiraProjectService {
 			int length = jsonArray.length();
 
 			for (int i = 0; i < length; i++) {
-				projects.add(
-					ProjectFactory.create(jsonArray.getJSONObject(i)));
+				projects.add(ProjectFactory.create(jsonArray.getJSONObject(i)));
 			}
 		}
 		catch (JSONException jsone) {

@@ -26,13 +26,14 @@ import java.util.Optional;
  */
 public interface JiraIssueService {
 
-	public Issue newIssue();
-
 	public void createIssue(Issue issue) throws IOException;
+
+	public Optional<Issue> getIssue(JiraToken jiraToken, String issueId)
+		throws IOException;
 
 	public List<Issue> getIssues(JiraToken jiraToken, String projectId)
 		throws IOException;
 
-	public Optional<Issue> getIssue(JiraToken jiraToken, String issueId)
-		throws IOException;
+	public Issue newIssue();
+
 }

@@ -26,11 +26,9 @@ import java.util.Optional;
  */
 public interface JiraProjectService {
 
-	public Optional<Project> getProject(
-			JiraToken jiraToken, String projectId)
+	public Optional<Project> getProject(JiraToken jiraToken, String projectId)
 		throws IOException;
 
-	public List<Project> getProjects(JiraToken jiraToken)
-		throws IOException;
+	public List<Project> getProjects(JiraToken jiraToken) throws IOException;
 
 }

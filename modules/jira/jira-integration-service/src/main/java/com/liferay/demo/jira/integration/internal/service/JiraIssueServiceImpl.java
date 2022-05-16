@@ -16,8 +16,8 @@ package com.liferay.demo.jira.integration.internal.service;
 
 import com.liferay.demo.jira.integration.config.JiraConfiguration;
 import com.liferay.demo.jira.integration.internal.model.IssueFactory;
-import com.liferay.demo.jira.integration.internal.util.JiraResponseUtil;
 import com.liferay.demo.jira.integration.internal.model.IssueImpl;
+import com.liferay.demo.jira.integration.internal.util.JiraResponseUtil;
 import com.liferay.demo.jira.integration.model.Issue;
 import com.liferay.demo.jira.integration.service.JiraIssueService;
 import com.liferay.demo.jira.integration.service.JiraToken;
@@ -65,13 +65,7 @@ public class JiraIssueServiceImpl implements JiraIssueService {
 	}
 
 	@Override
-	public Issue newIssue() {
-		return new IssueImpl();
-	}
-
-	@Override
 	public void createIssue(Issue issue) throws IOException {
-
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 		JSONObject fields = _jsonFactory.createJSONObject();
@@ -82,8 +76,8 @@ public class JiraIssueServiceImpl implements JiraIssueService {
 
 		fields.put("project", project);
 
-		fields.put("summary", issue.getSummary());
 		fields.put("description", issue.getDescription());
+		fields.put("summary", issue.getSummary());
 
 		JSONObject issueType = _jsonFactory.createJSONObject();
 
@@ -96,6 +90,74 @@ public class JiraIssueServiceImpl implements JiraIssueService {
 		String toJSONString = jsonObject.toJSONString();
 
 		System.err.println("!@#$ create JSON=" + toJSONString);
+	}
+
+	@Override
+	public Optional<Issue> getIssue(JiraToken jiraToken, String issueId)
+		throws IOException {
+
+		Issue issue = null;
+
+		HttpRequest httpRequest;
+
+		try {
+			httpRequest = HttpRequest.newBuilder(
+			).uri(
+				new URI(
+					"https", _jiraConfiguration.hostname(),
+					StringBundler.concat(
+						"/rest/api/3/issue/",
+						URLEncoder.encode(issueId, "UTF-8")),
+					null)
+			).setHeader(
+				"Authorization", "Basic " + jiraToken.getBasicAuthorization()
+			).setHeader(
+				"Content-Type", "application/json"
+			).GET(
+			).build();
+
+			_log.trace("headers=" + httpRequest.headers());
+			_log.trace("httpRequest=" + httpRequest);
+		}
+		catch (URISyntaxException urise) {
+			throw new IOException(urise);
+		}
+
+		HttpResponse<String> httpResponse;
+
+		try {
+			HttpClient httpClient = HttpClient.newBuilder(
+			).proxy(
+				ProxySelector.getDefault()
+			).version(
+				HttpClient.Version.HTTP_1_1
+			).build();
+
+			httpResponse = httpClient.send(
+				httpRequest, HttpResponse.BodyHandlers.ofString());
+		}
+		catch (InterruptedException ie) {
+			throw new IOException(ie);
+		}
+
+		String responseBody = JiraResponseUtil.trim(httpResponse.body());
+
+		_log.trace("responseBody=" + responseBody);
+
+		try {
+			JSONObject jsonObject = _jsonFactory.createJSONObject(responseBody);
+
+			issue = IssueFactory.create(issueId, jsonObject);
+		}
+		catch (JSONException jsone) {
+			throw new IOException(jsone);
+		}
+
+		if (issue == null) {
+			return Optional.empty();
+		}
+
+		return Optional.of(issue);
 	}
 
 	@Override
@@ -164,8 +226,7 @@ public class JiraIssueServiceImpl implements JiraIssueService {
 
 			for (int i = 0; i < length; i++) {
 				issues.add(
-					IssueFactory.create(
-						projectId, records.getJSONObject(i)));
+					IssueFactory.create(projectId, records.getJSONObject(i)));
 			}
 		}
 		catch (JSONException jsone) {
@@ -176,70 +237,8 @@ public class JiraIssueServiceImpl implements JiraIssueService {
 	}
 
 	@Override
-	public Optional<Issue> getIssue(JiraToken jiraToken, String issueId)
-		throws IOException {
-
-		Issue issue = null;
-
-		HttpRequest httpRequest;
-
-		try {
-			httpRequest = HttpRequest.newBuilder(
-			).uri(
-				new URI(
-					"https", _jiraConfiguration.hostname(),
-					StringBundler.concat(
-						"/rest/api/3/issue/",
-						URLEncoder.encode(issueId, "UTF-8")), null)
-			).setHeader(
-				"Authorization", "Basic " + jiraToken.getBasicAuthorization()
-			).setHeader(
-				"Content-Type", "application/json"
-			).GET(
-			).build();
-
-			_log.trace("headers=" + httpRequest.headers());
-			_log.trace("httpRequest=" + httpRequest);
-		}
-		catch (URISyntaxException urise) {
-			throw new IOException(urise);
-		}
-
-		HttpResponse<String> httpResponse;
-
-		try {
-			HttpClient httpClient = HttpClient.newBuilder(
-			).proxy(
-				ProxySelector.getDefault()
-			).version(
-				HttpClient.Version.HTTP_1_1
-			).build();
-
-			httpResponse = httpClient.send(
-				httpRequest, HttpResponse.BodyHandlers.ofString());
-		}
-		catch (InterruptedException ie) {
-			throw new IOException(ie);
-		}
-
-		String responseBody = JiraResponseUtil.trim(httpResponse.body());
-
-		_log.trace("responseBody=" + responseBody);
-
-		try {
-			JSONObject jsonObject = _jsonFactory.createJSONObject(responseBody);
-
-			issue = IssueFactory.create(issueId, jsonObject);
-		}
-		catch (JSONException jsone) {
-			throw new IOException(jsone);
-		}
-
-		if (issue == null) {
-			return Optional.empty();
-		}
-
-		return Optional.of(issue);
+	public Issue newIssue() {
+		return new IssueImpl();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

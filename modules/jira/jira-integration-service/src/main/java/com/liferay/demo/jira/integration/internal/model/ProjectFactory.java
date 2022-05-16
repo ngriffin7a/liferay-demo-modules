@@ -14,7 +14,6 @@
 
 package com.liferay.demo.jira.integration.internal.model;
 
-import com.liferay.demo.jira.integration.internal.model.ProjectImpl;
 import com.liferay.demo.jira.integration.model.Project;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -27,9 +26,7 @@ import java.util.Map;
  */
 public class ProjectFactory {
 
-	public static Project create(JSONObject jsonObject)
-		throws JSONException {
-
+	public static Project create(JSONObject jsonObject) throws JSONException {
 		JSONObject avatarsJSONObject = jsonObject.getJSONObject("avatarUrls");
 		Map<String, String> avatarURLs = new HashMap<>();
 

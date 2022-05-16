@@ -19,11 +19,12 @@ package com.liferay.demo.jira.integration.model;
  */
 public interface Status {
 
+	public String getName();
+
 	public String getStatusId();
+
+	public void setName(String name);
 
 	public void setStatusId(String statusId);
 
-	public String getName();
-
-	public void setName(String name);
 }

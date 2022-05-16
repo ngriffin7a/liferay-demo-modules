@@ -23,37 +23,38 @@ public interface Issue {
 
 	public Date getCreatedDate();
 
-	public void setCreatedDate(Date createdDate);
-
 	public String getDescription();
-
-	public void setDescription(String description);
 
 	public String getIssueId();
 
-	public void setIssueId(String issueId);
-
 	public String getKey();
-
-	public void setKey(String key);
 
 	public String getProjectId();
 
-	public void setProjectId(String projectId);
-
 	public String getStatus();
-
-	public void setStatus(String status);
 
 	public String getSummary();
 
-	public void setSummary(String summary);
-
 	public String getType();
-
-	public void setType(String type);
 
 	public Date getUpdatedDate();
 
+	public void setCreatedDate(Date createdDate);
+
+	public void setDescription(String description);
+
+	public void setIssueId(String issueId);
+
+	public void setKey(String key);
+
+	public void setProjectId(String projectId);
+
+	public void setStatus(String status);
+
+	public void setSummary(String summary);
+
+	public void setType(String type);
+
 	public void setUpdatedDate(Date updatedDate);
+
 }

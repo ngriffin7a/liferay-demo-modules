@@ -14,7 +14,6 @@
 
 package com.liferay.demo.jira.integration.internal.model;
 
-import com.liferay.demo.jira.integration.internal.model.StatusImpl;
 import com.liferay.demo.jira.integration.model.Status;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -24,10 +23,9 @@ import com.liferay.portal.kernel.json.JSONObject;
  */
 public class StatusFactory {
 
-	public static Status create(JSONObject jsonObject)
-		throws JSONException {
-
+	public static Status create(JSONObject jsonObject) throws JSONException {
 		StatusImpl jiraStatus = new StatusImpl();
+
 		jiraStatus.setName(jsonObject.getString("name"));
 		jiraStatus.setStatusId(jsonObject.getString("id"));
 

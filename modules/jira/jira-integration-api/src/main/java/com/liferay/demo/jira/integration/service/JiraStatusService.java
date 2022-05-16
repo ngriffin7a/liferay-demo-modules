@@ -17,6 +17,7 @@ package com.liferay.demo.jira.integration.service;
 import com.liferay.demo.jira.integration.model.Status;
 
 import java.io.IOException;
+
 import java.util.List;
 
 /**
@@ -24,7 +25,6 @@ import java.util.List;
  */
 public interface JiraStatusService {
 
-	public List<Status> getStatuses(JiraToken jiraToken)
-		throws IOException;
+	public List<Status> getStatuses(JiraToken jiraToken) throws IOException;
 
 }

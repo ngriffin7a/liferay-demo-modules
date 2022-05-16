@@ -25,20 +25,23 @@ import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import java.io.IOException;
+
 import java.net.ProxySelector;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Neil Griffin
@@ -56,9 +59,7 @@ public class JiraStatusServiceImpl implements JiraStatusService {
 	}
 
 	@Override
-	public List<Status> getStatuses(JiraToken jiraToken)
-		throws IOException {
-
+	public List<Status> getStatuses(JiraToken jiraToken) throws IOException {
 		List<Status> statuses = new ArrayList<>();
 
 		HttpRequest httpRequest;
@@ -110,8 +111,7 @@ public class JiraStatusServiceImpl implements JiraStatusService {
 			int length = jsonArray.length();
 
 			for (int i = 0; i < length; i++) {
-				statuses.add(
-					StatusFactory.create(jsonArray.getJSONObject(i)));
+				statuses.add(StatusFactory.create(jsonArray.getJSONObject(i)));
 			}
 		}
 		catch (JSONException jsone) {
