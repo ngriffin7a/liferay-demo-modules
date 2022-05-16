@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
+-->
 <jsp:root
 	version="2.1"
 	xmlns:aui="http://liferay.com/tld/aui"
@@ -13,32 +28,28 @@
 
 	<portlet:defineObjects />
 
-	<c:set value="${issueSearchContainerViewState}" var="searchContainerViewState" />
+	<c:set value="${projectSearchContainerViewState}" var="searchContainerViewState" />
 
 	<clay:management-toolbar
-		displayContext="${issueManagementToolbarViewState}"
-		itemsTotal="${issueCount}"
-		searchContainerId="issues"
+		displayContext="${projectClayToolbarViewState}"
+		itemsTotal="${projectCount}"
+		searchContainerId="projects"
 	/>
 
-	<liferay-ui:search-container emptyResultsMessage="no-issues" id="issues" total="${issueCount}">
-		<liferay-ui:search-container-results results="${issues}" />
+	<liferay-ui:search-container emptyResultsMessage="no-projects" id="projects" total="${projectCount}">
+		<liferay-ui:search-container-results results="${projects}" />
 
 		<liferay-ui:search-container-row
-			className="com.liferay.jira.integration.model.Issue"
-			modelVar="issue"
+			className="com.liferay.jira.integration.model.Project"
+			modelVar="project"
 		>
-			<c:if test="${currentUser.mayViewIssue(issue.issueId)}">
-				<portlet:renderURL var="viewIssueURL">
-					<portlet:param name="status" value="${issue.status}" />
-					<portlet:param name="issueId" value="${issue.issueId}" />
-					<portlet:param name="mvcRenderCommandName" value="issue-view" />
+			<c:if test="${currentUser.maySelectProject(project.projectId)}">
+				<portlet:renderURL var="selectProjectURL">
+					<portlet:param name="projectKey" value="${project.key}" />
 					<!-- SearchContainer view state -->
-					<portlet:param name="categoryId" value="${searchContainerViewState.categoryId}" />
 					<portlet:param name="cur" value="${searchContainerViewState.cur}" />
 					<portlet:param name="delta" value="${searchContainerViewState.delta}" />
 					<portlet:param name="displayStyle" value="${searchContainerViewState.displayStyle}" />
-					<portlet:param name="navigation" value="${searchContainerViewState.navigation}" />
 					<portlet:param name="orderByCol" value="${searchContainerViewState.orderByCol}" />
 					<portlet:param name="orderByType" value="${searchContainerViewState.orderByType}" />
 					<portlet:param name="resetCur" value="${searchContainerViewState.resetCur}" />
@@ -51,11 +62,11 @@
 				<c:when test='${searchContainerViewState.displayStyle == "descriptive"}'>
 					<liferay-ui:search-container-column-text colspan="2">
 						<h5 class="text-default">
-							<liferay-ui:message arguments="${issue.modifiedDateInfo}" key="x-modified-x-ago" />
+							<liferay-ui:message arguments="${project.modifiedDateInfo}" key="x-modified-x-ago" />
 						</h5>
 
 						<h4>
-							<aui:a href="${viewIssueURL}">${mvc.encoders.html(issue.description)}</aui:a>
+							<aui:a href="${selectProjectURL}">${mvc.encoders.html(project.name)}</aui:a>
 						</h4>
 					</liferay-ui:search-container-column-text>
 				</c:when>
@@ -64,15 +75,15 @@
 				<c:when test='${searchContainerViewState.displayStyle == "icon"}'>
 					<liferay-ui:search-container-column-text>
 						<liferay-frontend:icon-vertical-card
-							actionJsp="/views/issueActions.jspx"
+							actionJsp="/views/projectActions.jspx"
 							actionJspServletContext="${application}"
 							icon="cards2"
 							resultRow="${row}"
-							title="${issue.issueName}"
-							url="${viewIssueURL}"
+							title="${project.projectName}"
+							url="${selectProjectURL}"
 						>
 							<liferay-frontend:vertical-card-footer>
-								<div class="truncate-text">${issue.strippedDescription}</div>
+								<div class="truncate-text">${project.strippedDescription}</div>
 							</liferay-frontend:vertical-card-footer>
 						</liferay-frontend:icon-vertical-card>
 					</liferay-ui:search-container-column-text>
@@ -80,15 +91,19 @@
 
 				<!-- Table display style -->
 				<c:otherwise>
-					<liferay-ui:search-container-column-text href="${viewIssueURL}" name="key" value="${issue.key}" />
+					<liferay-ui:search-container-column-image name="icon" src="${project.avatarURLs['16x16']}" />
 
-					<liferay-ui:search-container-column-text name="status">
-						<liferay-ui:message key="${issue.status}" />
-					</liferay-ui:search-container-column-text>
+					<liferay-ui:search-container-column-text href="${selectProjectURL}" name="key" value="${project.key}" />
 
-					<liferay-ui:search-container-column-text href="http://TODO" name="summary" target="_blank" value="${issue.summary}" />
+					<liferay-ui:search-container-column-text name="name" value="${project.name}" />
 
-					<liferay-ui:search-container-column-jsp path="/views/issueActions.jsp" />
+					<!--
+					<liferay-ui:search-container-column-date name="create-date" property="createdDate" />
+					-->
+
+					<!--
+					<liferay-ui:search-container-column-jsp path="/views/projectActions.jspx" />
+					-->
 				</c:otherwise>
 			</c:choose>
 		</liferay-ui:search-container-row>

@@ -1,8 +1,8 @@
 Bundle-Name: jira-integration-service
-Bundle-SymbolicName: com.liferay.jira.integration.service
+Bundle-SymbolicName: com.liferay.demo.jira.integration.service
 Bundle-Version: 1.0.0
 # com.liferay.portal.kernel.* is only necessarily because currently deploying against a recent build of master
 Import-Package:\
-	com.liferay.portal.kernel.util; version="[12.0.0,14.0.0)",\
+	com.liferay.portal.kernel.util; version="12.0.0",\
 	\
 	*

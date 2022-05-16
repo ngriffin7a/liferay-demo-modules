@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 7.4.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_7_4_0.dtd">
+
+<routes>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{navigation}/category-{categoryId}/{status}/mvc{mvcRenderCommandName}/{issueId}/redirectedView/{redirectedView}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{navigation}/category-{categoryId}/{status}/mvc{mvcRenderCommandName}/redirectedView/{redirectedView}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{navigation}/category-{categoryId}/{status}/mvc{mvcRenderCommandName}/{issueId}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{navigation}/category-{categoryId}/{status}/mvc{mvcRenderCommandName}</pattern>
+	</route>
+	<route>
+		<pattern>/{displayStyle}/{orderByCol}/{orderByType}/{delta}/{resetCur}/{cur}/{navigation}/category-{categoryId}/{status}</pattern>
+	</route>
+</routes>
