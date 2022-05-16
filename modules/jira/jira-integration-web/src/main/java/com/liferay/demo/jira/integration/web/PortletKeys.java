@@ -20,12 +20,12 @@ package com.liferay.demo.jira.integration.web;
 public class PortletKeys {
 
 	public static final String ISSUES =
-		"com_liferay_jira_integration_crud_web_IssuesPortlet";
+		"com_liferay_demo_jira_integration_web_IssuesPortlet";
 
 	public static final String ISSUES_VISUAL =
-		"com_liferay_jira_integration_web_IssuesVisualPortlet";
+		"com_liferay_demo_jira_integration_web_IssuesVisualPortlet";
 
 	public static final String PROJECTS =
-		"com_liferay_jira_integration_crud_web_ProjectsPortlet";
+		"com_liferay_demo_jira_integration_web_ProjectsPortlet";
 
 }

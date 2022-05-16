@@ -1,6 +1,6 @@
 //Init Chart Data
 var chartData = [];
-var issuesPortletBoundary = ".portlet-boundary_com_liferay_demo_jira_integration_web_IssuesPortlet_";
+var issuesPortletBoundary = ".portlet-boundary_com_liferay_demo_jira_integration_web_IssuesVisualPortlet_";
 
 //Chart Configurations
 var chartConfigs = {
