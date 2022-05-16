@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	property = {
-		"com.liferay.portlet.display-category=category.sample",
+		"com.liferay.portlet.display-category=Jira Integration",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"javax.portlet.display-name=Issues",
 		"javax.portlet.init-param.template-path=/views/",
