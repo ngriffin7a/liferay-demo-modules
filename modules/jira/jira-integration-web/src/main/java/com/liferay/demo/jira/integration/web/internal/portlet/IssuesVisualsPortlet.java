@@ -1,29 +1,11 @@
-package com.liferay.jira.integration.web.internal.portlet;
+package com.liferay.demo.jira.integration.web.internal.portlet;
 
+import com.liferay.demo.jira.integration.web.PortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.jira.integration.JiraIssue;
-import com.liferay.jira.integration.JiraIssueService;
-import com.liferay.jira.integration.JiraToken;
-import com.liferay.jira.integration.JiraTokenService;
-import com.liferay.jira.integration.web.internal.constants.PortletKeys;
-import com.liferay.jira.integration.web.internal.el.CurrentUser;
-
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.portlet.Portlet;
-import javax.portlet.PortletException;
-import javax.portlet.PortletSession;
-import javax.portlet.RenderParameters;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Wes Kempa
@@ -39,7 +21,7 @@ import org.osgi.service.component.annotations.Reference;
 		"com.liferay.portlet.instanceable=true",
 		"javax.portlet.display-name=Issues Visual",
 		"javax.portlet.init-param.template-path=/views/",
-		"javax.portlet.init-param.view-template=/views/dashboard.jsp",
+		"javax.portlet.init-param.view-template=/views/dashboard.jspx",
 		"javax.portlet.name=" + PortletKeys.ISSUES_VISUAL,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",
