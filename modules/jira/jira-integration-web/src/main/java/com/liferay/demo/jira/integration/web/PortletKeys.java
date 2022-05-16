@@ -22,6 +22,9 @@ public class PortletKeys {
 	public static final String ISSUES =
 		"com_liferay_jira_integration_crud_web_IssuesPortlet";
 
+	public static final String ISSUES_VISUAL =
+		"com_liferay_jira_integration_web_IssuesVisualPortlet";
+
 	public static final String PROJECTS =
 		"com_liferay_jira_integration_crud_web_ProjectsPortlet";
 
