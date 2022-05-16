@@ -33,14 +33,14 @@ public class CurrentUser {
 		return true;
 	}
 
+	public boolean maySelectProject(String projectId) {
+		return true;
+	}
+
 	public boolean mayViewIssue(String issueId) {
 
 		// TODO: Permissions
 
-		return true;
-	}
-
-	public boolean maySelectProject(String projectId) {
 		return true;
 	}
 

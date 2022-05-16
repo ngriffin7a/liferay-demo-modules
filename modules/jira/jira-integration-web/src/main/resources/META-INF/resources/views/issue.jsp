@@ -57,6 +57,7 @@
 
 					<aui:select disabled="${readOnly}" label="status" name="status" value="">
 						<aui:option label="all" value="all" />
+
 						<c:forEach items="${sessionScope.statuses}" var="status">
 							<aui:option label="${status.name}" value="${status.statusId}" />
 						</c:forEach>

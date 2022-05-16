@@ -16,8 +16,8 @@ package com.liferay.demo.jira.integration.web.internal.controller;
 
 import com.liferay.demo.jira.integration.config.JiraConfiguration;
 import com.liferay.demo.jira.integration.model.Issue;
-import com.liferay.demo.jira.integration.service.JiraIssueService;
 import com.liferay.demo.jira.integration.model.Status;
+import com.liferay.demo.jira.integration.service.JiraIssueService;
 import com.liferay.demo.jira.integration.service.JiraStatusService;
 import com.liferay.demo.jira.integration.service.JiraToken;
 import com.liferay.demo.jira.integration.service.JiraTokenService;
@@ -78,7 +78,7 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 		_jiraConfiguration = ConfigurableUtil.createConfigurable(
 			JiraConfiguration.class, properties);
 	}
-	
+
 	@Override
 	public String render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
@@ -105,9 +105,8 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 			jiraIssueMap = new HashMap<>();
 		}
 
-		List<Status> statuses =
-			(List<Status>)portletSession.getAttribute(
-				"statuses");
+		List<Status> statuses = (List<Status>)portletSession.getAttribute(
+			"statuses");
 
 		if (statuses == null) {
 			statuses = Collections.emptyList();
@@ -119,8 +118,7 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 				new String[] {"key", "summary"});
 
 		renderRequest.setAttribute(
-			"issueSearchContainerViewState",
-			issueSearchContainerViewState);
+			"issueSearchContainerViewState", issueSearchContainerViewState);
 
 		PortletConfig portletConfig = (PortletConfig)renderRequest.getAttribute(
 			"javax.portlet.config");
@@ -157,11 +155,9 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 				showDisplayStyleCard, showDisplayStyleList,
 				showDisplayStyleTable, showInfoButton, showSearch, showSort);
 
-		String mapKey =
-			StringBundler.concat(
-				projectKey, status,
-				issueSearchContainerViewState.getOrderByType(),
-				issueSearchContainerViewState.getOrderByCol());
+		String mapKey = StringBundler.concat(
+			projectKey, status, issueSearchContainerViewState.getOrderByType(),
+			issueSearchContainerViewState.getOrderByCol());
 
 		List<Issue> issues = jiraIssueMap.get(mapKey);
 
@@ -169,9 +165,8 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 			JiraToken jiraToken = null;
 
 			try {
-				jiraToken =
-					JiraTokenUtil.getJiraTokenFromPortletSession(
-						_jiraTokenService, portletSession);
+				jiraToken = JiraTokenUtil.getJiraTokenFromPortletSession(
+					_jiraTokenService, portletSession);
 
 				issues = _jiraIssueService.getIssues(jiraToken, projectKey);
 				/*
@@ -182,22 +177,18 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 						"asc"),
 					issueSearchContainerViewState.getOrderByCol());
 				 */
-
 				jiraIssueMap.put(mapKey, issues);
 
-				statuses =
-					_jiraStatusService.getStatuses(jiraToken);
+				statuses = _jiraStatusService.getStatuses(jiraToken);
 			}
 			catch (IOException ioException) {
 				throw new PortletException(ioException);
 			}
 		}
 
-		portletSession.setAttribute(
-			"jiraIssueMap", jiraIssueMap);
+		portletSession.setAttribute("jiraIssueMap", jiraIssueMap);
 
-		portletSession.setAttribute(
-			"statuses", statuses);
+		portletSession.setAttribute("statuses", statuses);
 
 		renderRequest.setAttribute("currentUser", new CurrentUser());
 		renderRequest.setAttribute("issueCount", issues.size());
@@ -208,8 +199,7 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 			resourceBundle, "filter-navigation");
 		String orderByMessage = LanguageUtil.get(resourceBundle, "order-by");
 		String keyMessage = LanguageUtil.get(resourceBundle, "key");
-		String summaryMessage = LanguageUtil.get(
-			resourceBundle, "summary");
+		String summaryMessage = LanguageUtil.get(resourceBundle, "summary");
 
 		renderRequest.setAttribute(
 			"issueManagementToolbarViewState",
@@ -227,6 +217,15 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 	private volatile JiraConfiguration _jiraConfiguration;
 
 	@Reference
+	private JiraIssueService _jiraIssueService;
+
+	@Reference
+	private JiraStatusService _jiraStatusService;
+
+	@Reference
+	private JiraTokenService _jiraTokenService;
+
+	@Reference
 	private ManagementToolbarViewStateFactory
 		_managementToolbarViewStateFactory;
 
@@ -235,14 +234,5 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 
 	@Reference
 	private SearchContainerViewStateFactory _searchContainerViewStateFactory;
-
-	@Reference
-	private JiraIssueService _jiraIssueService;
-
-	@Reference
-	private JiraStatusService _jiraStatusService;
-
-	@Reference
-	private JiraTokenService _jiraTokenService;
 
 }

@@ -14,23 +14,26 @@
 
 package com.liferay.demo.jira.integration.web.internal.portlet;
 
-import com.liferay.demo.jira.integration.web.PortletKeys;
-import com.liferay.demo.jira.integration.web.internal.el.CurrentUser;
 import com.liferay.demo.jira.integration.model.Project;
 import com.liferay.demo.jira.integration.service.JiraProjectService;
 import com.liferay.demo.jira.integration.service.JiraToken;
 import com.liferay.demo.jira.integration.service.JiraTokenService;
+import com.liferay.demo.jira.integration.web.PortletKeys;
+import com.liferay.demo.jira.integration.web.internal.el.CurrentUser;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
+
+import java.io.IOException;
+
+import java.util.List;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import java.io.IOException;
-import java.util.List;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Neil Griffin
@@ -61,8 +64,8 @@ public class ProjectsPortlet extends MVCPortlet {
 
 		PortletSession portletSession = renderRequest.getPortletSession();
 
-		List<Project> projects =
-			(List<Project>)portletSession.getAttribute("projects");
+		List<Project> projects = (List<Project>)portletSession.getAttribute(
+			"projects");
 
 		if (projects == null) {
 			JiraToken jiraToken = JiraTokenUtil.getJiraTokenFromPortletSession(

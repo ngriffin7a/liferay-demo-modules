@@ -68,8 +68,7 @@ public class IssueDetailRenderController implements MVCRenderCommand {
 				new String[] {"key", "summary"});
 
 		renderRequest.setAttribute(
-			"issueSearchContainerViewState",
-			issueSearchContainerViewState);
+			"issueSearchContainerViewState", issueSearchContainerViewState);
 
 		Issue issue = _jiraIssueService.newIssue();
 
@@ -79,18 +78,15 @@ public class IssueDetailRenderController implements MVCRenderCommand {
 
 		if (Validator.isNotNull(issueId)) {
 			try {
-				JiraToken jiraToken = JiraTokenUtil.
-					getJiraTokenFromPortletSession(
-						_jiraTokenService,
-						renderRequest.getPortletSession());
+				JiraToken jiraToken =
+					JiraTokenUtil.getJiraTokenFromPortletSession(
+						_jiraTokenService, renderRequest.getPortletSession());
 
-				
-				renderRequest.setAttribute("statuses", _jiraStatusService.getStatuses(jiraToken));
+				renderRequest.setAttribute(
+					"statuses", _jiraStatusService.getStatuses(jiraToken));
 
-				Optional<Issue> optionalIssue =
-					_jiraIssueService.getIssue(
-						jiraToken,
-						issueId);
+				Optional<Issue> optionalIssue = _jiraIssueService.getIssue(
+					jiraToken, issueId);
 
 				if (optionalIssue.isPresent()) {
 					issue = optionalIssue.get();
@@ -111,14 +107,15 @@ public class IssueDetailRenderController implements MVCRenderCommand {
 	}
 
 	@Reference
-	private SearchContainerViewStateFactory _searchContainerViewStateFactory;
+	private JiraIssueService _jiraIssueService;
 
 	@Reference
-	private JiraIssueService _jiraIssueService;
+	private JiraStatusService _jiraStatusService;
 
 	@Reference
 	private JiraTokenService _jiraTokenService;
 
 	@Reference
-	private JiraStatusService _jiraStatusService;
+	private SearchContainerViewStateFactory _searchContainerViewStateFactory;
+
 }

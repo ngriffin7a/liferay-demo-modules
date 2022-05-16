@@ -14,10 +14,10 @@
 
 package com.liferay.demo.jira.integration.web.internal.view;
 
+import com.liferay.demo.jira.integration.model.Status;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
-import com.liferay.demo.jira.integration.model.Status;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
@@ -166,7 +166,10 @@ public class IssueManagementToolbarViewState
 					add(
 						dropdownItem -> {
 							dropdownItem.setActive(
-								status.getName().equals(_getNavigation()));
+								status.getName(
+								).equals(
+									_getNavigation()
+								));
 
 							PortletURL statusURL = PortletURLUtil.clone(
 								portletURL, _liferayPortletResponse);
@@ -229,15 +232,15 @@ public class IssueManagementToolbarViewState
 	}
 
 	private RenderURL _addEntryURL;
-	private String _status;
 	private CreationMenu _creationMenu;
 	private DropdownItemList _filterDropdownItems;
 	private String _filterNavigationMessage;
 	private HttpServletRequest _httpServletRequest;
-	private LiferayPortletResponse _liferayPortletResponse;
 	private String _keyMessage;
+	private LiferayPortletResponse _liferayPortletResponse;
 	private String _orderByMessage;
-	private String _summaryMessage;
+	private String _status;
 	private List<Status> _statuses;
+	private String _summaryMessage;
 
 }

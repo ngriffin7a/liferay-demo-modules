@@ -27,12 +27,11 @@ import javax.portlet.PortletSession;
 public class JiraTokenUtil {
 
 	public static JiraToken getJiraTokenFromPortletSession(
-			JiraTokenService jiraTokenService,
-			PortletSession portletSession)
+			JiraTokenService jiraTokenService, PortletSession portletSession)
 		throws IOException {
 
-		JiraToken jiraToken =
-			(JiraToken)portletSession.getAttribute("jiraToken");
+		JiraToken jiraToken = (JiraToken)portletSession.getAttribute(
+			"jiraToken");
 
 		if (jiraToken == null) {
 			jiraToken = jiraTokenService.getToken();
