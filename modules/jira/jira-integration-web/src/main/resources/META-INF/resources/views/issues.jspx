@@ -82,13 +82,17 @@
 				<c:otherwise>
 					<liferay-ui:search-container-column-text href="${viewIssueURL}" name="key" value="${issue.key}" />
 
+					<liferay-ui:search-container-column-text name="type">
+						<liferay-ui:message key="${issue.type}" />
+					</liferay-ui:search-container-column-text>
+
 					<liferay-ui:search-container-column-text name="status">
 						<liferay-ui:message key="${issue.status}" />
 					</liferay-ui:search-container-column-text>
 
 					<liferay-ui:search-container-column-text href="http://TODO" name="summary" target="_blank" value="${issue.summary}" />
 
-					<liferay-ui:search-container-column-jsp path="/views/issueActions.jsp" />
+					<liferay-ui:search-container-column-jsp path="/views/issueActions.jspx" />
 				</c:otherwise>
 			</c:choose>
 		</liferay-ui:search-container-row>

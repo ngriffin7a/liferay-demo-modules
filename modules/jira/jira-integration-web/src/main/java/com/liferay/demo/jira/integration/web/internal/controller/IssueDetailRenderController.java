@@ -103,7 +103,7 @@ public class IssueDetailRenderController implements MVCRenderCommand {
 
 		renderRequest.setAttribute("issue", issue);
 
-		return "/views/issue.jsp";
+		return "/views/issue.jspx";
 	}
 
 	@Reference

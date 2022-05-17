@@ -211,7 +211,7 @@ public class IssueMasterRenderController implements MVCRenderCommand {
 					filterNavigationMessage, orderByMessage, keyMessage,
 					summaryMessage, statuses)));
 
-		return "/views/issues.jsp";
+		return "/views/issues.jspx";
 	}
 
 	private volatile JiraConfiguration _jiraConfiguration;
