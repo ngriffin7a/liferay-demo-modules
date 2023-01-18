@@ -1,0 +1,9 @@
+Bundle-Name: fragment-widget-web
+Bundle-SymbolicName: com.liferay.demo.fragment.widget.web
+Bundle-Version: 1.0.0
+Import-Package:\
+	com.liferay.portal.kernel.portlet.bridges.mvc;version="[6.0.0,7.0.0)",\
+	*
+Require-Capability:\
+	osgi.extender;\
+		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/fragment))"
