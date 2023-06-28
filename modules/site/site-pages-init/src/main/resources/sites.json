@@ -1,0 +1,60 @@
+{
+	"sites": [
+		{
+			"name": "Guest",
+			"pages": {
+				"public": [
+					{
+						"content-pages": [
+							"Rugged Capability",
+							"Electrified Vehicles",
+							"Certified Pre-Owned"
+						],
+						"name": "Vehicles"
+					},
+					{
+						"content-pages": [
+							"Build & Price",
+							"See Offers",
+							"Search Inventory",
+							"Estimate Payments",
+							"Apply for Financing",
+							"Trade-In Value",
+							"Lease or Finance"
+						],
+						"name": "Shopping Tools"
+					},
+					{
+						"content-pages": [
+							"About Us",
+							"News & Events",
+							"Awards, Accolades & Ratings",
+							"Careers",
+							"Investor Relations",
+							"Corporate Social Responsibility",
+							"Financial Services",
+							"Merchandise & Apparel"
+						],
+						"name": "Discover"
+					},
+					{
+						"content-pages": [
+							"FAQ",
+							"Customer Service",
+							"Buyer’s Guide"
+						],
+						"name": "Help & Support"
+					},
+					{
+						"content-pages": [
+							"Schedule Service",
+							"Parts & Service",
+							"Roadside Assistance"
+						],
+						"name": "Owners"
+					}
+				]
+			}
+		}
+	]
+}
